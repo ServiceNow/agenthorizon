@@ -1,0 +1,284 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "prov": "http://www.w3.org/ns/prov#",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "wasDerivedFrom": "prov:wasDerivedFrom",
+    "wasGeneratedBy": "prov:wasGeneratedBy"
+  },
+  "@type": "sc:Dataset",
+  "conformsTo": [
+    "http://mlcommons.org/croissant/1.1",
+    "http://mlcommons.org/croissant/RAI/1.0"
+  ],
+  "name": "AgentHorizon",
+  "description": "AgentHorizon is a benchmark of 1,373 human-annotated judging items recorded on production desktop applications across three operating systems (Windows, Linux, macOS) and six task domains. It is built from 425 size-4 paired groups; each pair contributes one positive trajectory and one adversarial negative obtained by swapping the user instruction onto a sibling trajectory, so the negative is itself a coherent successful execution of a different instruction. The corpus is partitioned by an open-weight splitter into AgentHorizon (605 items, the headline subset) and AgentHorizon-Simple (768 items, the regression companion).",
+  "url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/J9KNWR",
+  "identifier": "doi:10.7910/DVN/J9KNWR",
+  "license": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/J9KNWR",
+  "version": "1.0",
+  "datePublished": "2026-05-04",
+  "creator": {
+    "@type": "sc:Organization",
+    "name": "Anonymous Authors"
+  },
+  "publisher": {
+    "@type": "sc:Organization",
+    "name": "Harvard Dataverse"
+  },
+  "citeAs": "Anonymous Authors. AgentHorizon: Evaluating Agentic Judges for Long-Horizon Computer-Use Tasks. NeurIPS 2026 Datasets and Benchmarks Track submission.",
+  "keywords": [
+    "agent benchmark",
+    "computer-use agents",
+    "LLM-as-a-judge",
+    "trajectory evaluation",
+    "long-horizon"
+  ],
+  "inLanguage": "en",
+  "isLiveDataset": false,
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "agenthorizon-labels-jsonl",
+      "name": "agenthorizon_labels_anon.jsonl",
+      "description": "Per-trajectory labels and mistake types, keyed by trajectory_id.",
+      "contentUrl": "https://dataverse.harvard.edu/api/access/datafile/13817235?key=9693bd03-971b-400d-b0c5-12e282f35fb7",
+      "encodingFormat": "application/x-jsonlines",
+      "sha256": "ec57ba3ef6687993c27129d140a8275eb642478c23d824717bd6bba6ff168e81"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "agenthorizon-difficulty-jsonl",
+      "name": "agenthorizon_difficulty_anon.jsonl",
+      "description": "Per-trajectory AgentHorizon vs AgentHorizon-Simple bucket assignment.",
+      "contentUrl": "https://dataverse.harvard.edu/api/access/datafile/13817238?key=9693bd03-971b-400d-b0c5-12e282f35fb7",
+      "encodingFormat": "application/x-jsonlines",
+      "sha256": "7a4cff470f47db34c35a37f12d17479876f2f90fc32a41bd999318d6c31261f9"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "agenthorizon-md-archive",
+      "name": "agenthorizon_md.tar.gz",
+      "description": "Pre-rendered Markdown views of every trajectory.",
+      "contentUrl": "https://dataverse.harvard.edu/api/access/datafile/13814106?key=9693bd03-971b-400d-b0c5-12e282f35fb7",
+      "encodingFormat": "application/gzip",
+      "sha256": "a755fe19619612df16f9978a7cf79a490e0bbfa1562a0794f6084da42c0ae82f"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "agenthorizon-json-archive",
+      "name": "agenthorizon_json.tar.gz",
+      "description": "Pre-rendered structured JSON views of every trajectory.",
+      "contentUrl": "https://dataverse.harvard.edu/api/access/datafile/13814107?key=9693bd03-971b-400d-b0c5-12e282f35fb7",
+      "encodingFormat": "application/gzip",
+      "sha256": "9acd343f8f7587b7d776ead4fbd29a793de3a6620aeea17920ac4015a8c9bb4f"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "readme",
+      "name": "README.md",
+      "description": "Reviewer-facing README at the dataset root.",
+      "contentUrl": "https://dataverse.harvard.edu/api/access/datafile/13814098?key=9693bd03-971b-400d-b0c5-12e282f35fb7",
+      "encodingFormat": "text/markdown",
+      "sha256": "a601ac06134d77d31919461e6c09cf18375f4cebf7f138f33831c9909a63c20e"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "restore-script",
+      "name": "restore.sh",
+      "description": "Bash helper that reassembles the on-disk layout the eval scripts expect.",
+      "contentUrl": "https://dataverse.harvard.edu/api/access/datafile/13814112?key=9693bd03-971b-400d-b0c5-12e282f35fb7",
+      "encodingFormat": "application/x-sh",
+      "sha256": "7715c4bed09a3f9c08941a6ef1e3dd6a997b96b2a38cfba9ddd086eabddbf397"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "agenthorizon-labels",
+      "name": "Per-trajectory labels",
+      "description": "One row per trajectory, with label and mistake type.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "agenthorizon-labels/trajectory_id",
+          "name": "trajectory_id",
+          "description": "Per-trajectory UUID.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "agenthorizon-labels-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.trajectory_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "agenthorizon-labels/label",
+          "name": "label",
+          "description": "positive or negative.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "agenthorizon-labels-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "agenthorizon-labels/mistake_type",
+          "name": "mistake_type",
+          "description": "For negatives: Critical Mistake, Bad Side Effect, or Misunderstanding of the Instruction.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "agenthorizon-labels-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.mistake_type"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "agenthorizon-difficulty",
+      "name": "Per-trajectory bucket",
+      "description": "AgentHorizon vs AgentHorizon-Simple bucket. Foreign key trajectory_id.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "agenthorizon-difficulty/trajectory_id",
+          "name": "trajectory_id",
+          "description": "Foreign key into agenthorizon-labels.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "agenthorizon-difficulty-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.trajectory_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "agenthorizon-difficulty/trajectory_difficulty",
+          "name": "trajectory_difficulty",
+          "description": "hard = AgentHorizon (the headline subset). easy = AgentHorizon-Simple (the regression companion).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "agenthorizon-difficulty-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.trajectory_difficulty"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "agenthorizon-difficulty/pair_group_id",
+          "name": "pair_group_id",
+          "description": "Pair group identifier; honor when constructing custom splits.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "agenthorizon-difficulty-jsonl"
+            },
+            "extract": {
+              "jsonPath": "$.pair_group_id"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "rai:dataCollection": "Trajectories were recorded by paid human annotators performing real instructions on Windows, Linux, and macOS using production desktop applications across six task domains.",
+  "rai:dataCollectionType": [
+    "Manual Human Curator",
+    "Direct measurement"
+  ],
+  "rai:dataAnnotationProtocol": "Four-stage human pipeline per trajectory: Annotation, Review L1, Review of mistake category, and a Second-stage review. Positives also pass a post-hoc GPT-5.4 audit. Negatives are constructed by instruction-swap within a sibling pair.",
+  "rai:dataAnnotationPlatform": [
+    "Internal annotation web application."
+  ],
+  "rai:annotationsPerItem": "One agreed label per trajectory, after the four-stage human pipeline.",
+  "rai:annotatorDemographics": "Paid annotation workforce; per-annotator demographics not collected.",
+  "rai:dataLimitations": [
+    "Operating systems limited to Windows, Linux, and macOS.",
+    "Application coverage is finite (107 unique applications).",
+    "All instructions and on-screen text are in English.",
+    "AgentHorizon vs AgentHorizon-Simple partition is induced by Qwen 3.5 122B-A10B in OpenCode at k=8, threshold >= 7/8."
+  ],
+  "rai:dataBiases": [
+    "Application coverage is heavier in productivity tools.",
+    "Recordings reflect annotator workflows, not end-user populations.",
+    "Negatives are conditioned on what could be plausibly swapped within a pair."
+  ],
+  "rai:personalSensitiveInformation": [
+    "No PII about end users was collected.",
+    "Test accounts with synthetic data; no real customer records.",
+    "Screenshots were spot-audited for incidental capture of identifying information."
+  ],
+  "rai:dataUseCases": [
+    "Recommended: evaluating LLM-as-a-judge on long-horizon computer-use agent trajectories.",
+    "Not recommended: training an agent policy or any task other than judging."
+  ],
+  "rai:dataSocialImpact": "Intended to make automatic evaluation of computer-use agents more reliable. Risks: judges calibrated on this benchmark may inherit application-coverage and construction biases; per-mistake-type and per-bucket numbers are reported so consumers can audit slices.",
+  "rai:hasSyntheticData": false,
+  "wasDerivedFrom": "In-house human-annotated computer-use trajectories. Not derived from any prior public dataset.",
+  "wasGeneratedBy": [
+    "Trajectories: paid human annotators executing instructions on production desktop applications.",
+    "Labels and mistake types: four-stage human review pipeline with a post-hoc GPT-5.4 audit of positives.",
+    "AgentHorizon vs AgentHorizon-Simple bucket: Qwen 3.5 122B-A10B in OpenCode, k=8 rollouts, threshold >= 7/8."
+  ],
+  "rai:dataReleaseMaintenancePlan": "Hosted on Harvard Dataverse with a persistent DOI. Draft accessible only via the Anonymous Private URL during review; on acceptance, published as v1 with an open license."
+}

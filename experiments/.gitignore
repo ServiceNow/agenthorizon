@@ -1,0 +1,11 @@
+# Only track .meta/ (template + registry) and top-level docs. Everything
+# else (live per-run dirs and the .archive/ of retired runs) is large and
+# reproducible, so it is not committed. .archive/ is also gitignored by
+# virtue of starting with a dot -- it stays local-only or on EAI.
+*
+!.gitignore
+!README.md
+!.meta/
+!.meta/**
+# Re-ignore large machine-local raw run trees under .meta/
+.meta/runs_splitter_v2/

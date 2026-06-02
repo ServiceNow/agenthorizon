@@ -1,0 +1,29 @@
+You are judging one AgentHorizon trajectory. The judging framework, file layout, and mistake-type definitions are in AGENTS.md / CLAUDE.md / GEMINI.md in your working directory; use them.
+
+# Input
+
+Trajectory ID: `{{TRAJECTORY_ID}}`
+
+The trajectory content is NOT in your context. You MUST read it from disk.
+
+Start by opening `./agenthorizon_md/{{TRAJECTORY_ID}}.md` to get the goal and action sequence. Open the structured JSON at `./agenthorizon_json/{{TRAJECTORY_ID}}.json` or the screenshots when the markdown is ambiguous. One-shot guesses without reading the trajectory are not acceptable.
+
+## Screenshots
+
+Each step in the markdown ends with a screenshot link in the form
+`![Step N screenshot](./data/media/images/<deliverable_id>/step_<N>.png)`. These are **local relative paths** in your working directory; use the `Read` tool (or your harness's equivalent) on the path directly to view the image. Do not attempt to fetch the screenshot from any external URL — the local file is the source of truth and the model can view it inline.
+
+Please look at least one screenshot.
+
+# Output
+
+Respond with a JSON object:
+{
+  "success": true or false,
+  "reasoning": "One to three sentences citing which layer (core objective, parameters, or constraints) was or was not satisfied.",
+  "confidence": "low" | "medium" | "high",
+  "mistake_type": null when success=true, else one of:
+    "Critical Mistake", "Bad Side Effect", "Misunderstanding of the Instruction"
+}
+
+Notes: confidence is evidence strength, not verdict. Low confidence ≠ failure. mistake_type is null on success.
