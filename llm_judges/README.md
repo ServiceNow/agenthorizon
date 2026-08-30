@@ -35,9 +35,9 @@ Resize every screenshot to a small resolution and ship the whole trajectory
 
 ## Quick Start
 
-### Preprocess once (1× — auto-resolution, fits 100K Gemini tokens) ✅ DONE
+### Preprocess once (1× — auto-resolution, fits 100K Gemini tokens)
 
-Already preprocessed on nlp-cpu-1 at `/home/nlp/users/fpesar/cuarm/data/preprocessed/compress` (2.5 GB, all 1700 trajectories). Skip the command below unless you're regenerating it from scratch.
+Preprocessed payloads are generated locally and are not committed. Run:
 
 ```bash
 uv run python llm_judges/preprocess_compress.py \
@@ -46,9 +46,9 @@ uv run python llm_judges/preprocess_compress.py \
     --max-tokens 100000
 ```
 
-### Preprocess once (2.2× — fixed 1126×730, more visual detail for open VL models) ✅ DONE
+### Preprocess once (2.2× — fixed 1126×730, more visual detail for open VL models)
 
-Already preprocessed on nlp-cpu-1 at `/home/nlp/users/fpesar/cuarm/data/preprocessed/compress_2_2x` (14 GB, all 1700 trajectories). Skip the command below unless you're regenerating it from scratch.
+Generate the higher-resolution variant with:
 
 ```bash
 uv run python llm_judges/preprocess_compress.py \
@@ -144,23 +144,24 @@ uv run python scripts/results_to_submission.py \
 # -> results/analysis/submission_eval_agenthorizon_llmjudge_compress_2_2x_qwen36_27b.jsonl
 ```
 
-## Data paths on nlp-cpu-1
+## Local data layout
 
-For collaborators who want to copy the preprocessed data instead of
-regenerating it (the screenshots aren't checked in; preprocessing reads them
-from `data/media/images/<original_id>/step_<N>.png` via the labels mapping):
+The screenshots are distributed with the dataset rather than checked into this
+repository. Preprocessing reads them from
+`data/media/images/<original_id>/step_<N>.png` through the labels mapping and
+writes derived payloads under `data/preprocessed/`:
 
-| Path | Size | What |
-|---|---|---|
-| `/home/nlp/users/fpesar/cuarm/data/preprocessed/compress` | 2.5 GB | Approach A at **1×** (auto-resolution, 512×332 max) — `--max-tokens 100000` |
-| `/home/nlp/users/fpesar/cuarm/data/preprocessed/compress_2_2x` | 14 GB | Approach A at **2.2×** (1126×730 fixed) |
-| `/home/nlp/users/fpesar/cuarm/data/media/images` | 41 GB | Raw screenshots (852 trajectory dirs, mapped via `original_id` in labels) |
+| Path | What |
+|---|---|
+| `data/preprocessed/compress` | Approach A at **1×** (auto-resolution, 512×332 max) — `--max-tokens 100000` |
+| `data/preprocessed/compress_2_2x` | Approach A at **2.2×** (1126×730 fixed) |
+| `data/media/images` | Raw screenshots, mapped through `original_id` in the labels |
 
 ## Committed results provenance
 
 | File | Preprocessing | Model | Notes |
 |---|---|---|---|
-| `results/analysis/eval_agenthorizon_llmjudge_compress_gemini_flash_lite.json` | Approach A, **1×** (512×332 max, 100K-token budget) | Gemini 3.1 Flash Lite | Full 1700; accuracy 64.7%, F1 65.9% |
+| `results/analysis/eval_agenthorizon_llmjudge_compress_gemini_flash_lite.json` | Approach A, **1×** (512×332 max, 100K-token budget) | Gemini 3.1 Flash Lite | Historical construction-pool run; not a released 1,373-item benchmark result |
 | `results/analysis/submission_eval_agenthorizon_llmjudge_compress_gemini_flash_lite.jsonl` | (same as above) | (same) | Same predictions in submission template format |
 
 ## Testing

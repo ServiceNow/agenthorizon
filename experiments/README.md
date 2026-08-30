@@ -100,8 +100,8 @@ This is the working directory the judge sees when it runs. Its layout matches wh
 | `prompt.md` | 424-byte placeholder. Each run overwrites this with the real prompt (and also writes a copy to `<exp_dir>/prompt.md`). The prompt hash lands in `config.json`. | yes (placeholder) |
 | `.gitkeep` | Forces the dir to exist in git. | yes |
 | `data/media/images` | **Symlink** -> `../../../../../data/media/images`, i.e. `data/media/images/` at the repo root. Screenshots are referenced from the markdown as `./data/media/images/<id>/step_N.png`. Not copied, not large. | yes (symlink) |
-| `agenthorizon_json/<uuid>.json` | 1,700 structured trajectories, one per file. The `task` + `steps[]` form the judge's structured view. | yes |
-| `agenthorizon_md/<uuid>.md` | 1,700 markdown trajectories, one per file, with inline screenshot links. The judge reads these. | yes |
+| `agenthorizon_json/<uuid>.json` | One structured trajectory per released task (1,373 for the current release). The `task` + `steps[]` form the judge's structured view. | yes |
+| `agenthorizon_md/<uuid>.md` | One Markdown trajectory per released task, with inline screenshot links. The judge reads these. | yes |
 
 The per-trajectory files are locked read-only (`444` on files, `555` on dirs) in provisioned run dirs so the judge can't mutate them mid-eval. The template copy is read/write.
 
@@ -119,9 +119,11 @@ Do NOT pass `--no-images`: the judge reads screenshots as part of evaluation.
 
 ## How to obtain the non-committed data
 
-### On `nlp-cpu-1` (where this repo usually lives)
+### From a local checkout
 
-The non-committed data is already present on disk at `/home/nlp/users/xlu41/dev/cuarm/experiments/`, including every live per-run dir and the entire `.archive/`. If you cloned the repo fresh elsewhere on this host, just re-run evaluations; do not copy from another user's home.
+Live and archived runs are stored under `experiments/` and remain uncommitted.
+For a fresh checkout, restore the released inputs as described in the root
+README, then rerun or resume the desired evaluation.
 
 ### From EAI: per-run `<exp_dir>/` and the `.archive/`
 
