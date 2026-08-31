@@ -25,6 +25,7 @@ This repository is the **evaluation harness**: code, prompts, and judge implemen
 | `docs/benchmark-construction.md` | Stage-by-stage construction counts, review, quality assurance, and annotator effort |
 | `docs/mistake-taxonomy.md` | Failure-type definitions and adjudication rules |
 | `docs/evaluation-protocol.md` | Blind judge inputs, scoring, preprocessing, and reproducibility contract |
+| `docs/supplementary-results.md` | Exhaustive submitted-split model-interface grids and failure-type diagnostics |
 
 ## Getting the data
 
@@ -136,5 +137,6 @@ Use `--limit 50` for a quick pilot before the full run.
 - [Benchmark construction and review](docs/benchmark-construction.md) — exact construction/release counts and QA stages.
 - [Failure-type annotation rubric](docs/mistake-taxonomy.md) — operational definitions and boundary checks.
 - [Judge evaluation protocol](docs/evaluation-protocol.md) — blind inputs, fixed-denominator scoring, and run records.
+- [Supplementary results](docs/supplementary-results.md) — exhaustive model-interface grids retained outside the paper.
 - [STANDARD.md](STANDARD.md) — trajectory schema, action types, labels, pairing.
 - [`scripts/README.md`](scripts/README.md) — full script reference.
