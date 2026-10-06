@@ -285,13 +285,13 @@ Wait/pause for a duration.
 
 **Parent-child negative pairing:**
 
-The human delivery data contains 426 paired deliverables. A child deliverable (identified by having a `notes.paired_task_id`) has a slightly different instruction from its parent. For each pair, the converter emits:
+The released construction pool contains 425 complete instruction pairs. A child deliverable (identified by having a `notes.paired_task_id`) has a slightly different instruction from its parent. For each pair, the converter emits:
 
 1. A **positive** trajectory for each deliverable: its own instruction paired with its own execution trace.
 2. **Negative (parent instruction + child trajectory)**: The parent's instruction paired with the child's execution trace. The mistake type is `notes.mistake_type_inst2_demo_1`.
 3. **Negative (child instruction + parent trajectory)**: The child's instruction paired with the parent's execution trace. The mistake type is `notes.mistake_type_inst1_demo_2`.
 
-This produces 852 positive + 852 negative = **1704 total trajectories**. All are assigned UUID IDs and shuffled. Negative metadata (mistake_type, paired_id, negative_source) is stored only in the labels file, never in the trajectory file.
+This produces 850 candidate positives + 850 swapped negatives = **1,700 construction-stage tasks**. Evidence review excludes 327 candidate positives whose success is material or unresolved while preserving the independently reviewed swapped negatives. The released benchmark therefore contains **523 positives + 850 negatives = 1,373 tasks**. All are assigned opaque IDs and shuffled. Negative metadata (`mistake_type`, `paired_id`, `negative_source`) is stored only in the labels file, never in the trajectory file. See [docs/benchmark-construction.md](docs/benchmark-construction.md) for the complete accounting and review procedure.
 
 ### AgentSynth Positive Trajectories (`extracted/*.json`)
 

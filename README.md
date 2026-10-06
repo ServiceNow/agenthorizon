@@ -22,6 +22,10 @@ This repository is the **evaluation harness**: code, prompts, and judge implemen
 | `experiments/.meta/template/` | Per-run layout template (output dirs); restore the trajectory inputs via the data download below |
 | `paper/croissant.json` | Croissant dataset metadata |
 | `STANDARD.md` | Trajectory schema, action types, label format, and how positive/negative pairs are constructed |
+| `docs/benchmark-construction.md` | Stage-by-stage construction counts, review, quality assurance, and annotator effort |
+| `docs/mistake-taxonomy.md` | Failure-type definitions and adjudication rules |
+| `docs/evaluation-protocol.md` | Blind judge inputs, scoring, preprocessing, and reproducibility contract |
+| `docs/supplementary-results.md` | Exhaustive submitted-split model-interface grids and failure-type diagnostics |
 
 ## Getting the data
 
@@ -130,5 +134,9 @@ Use `--limit 50` for a quick pilot before the full run.
 
 ## Further reading
 
+- [Benchmark construction and review](docs/benchmark-construction.md) — exact construction/release counts and QA stages.
+- [Failure-type annotation rubric](docs/mistake-taxonomy.md) — operational definitions and boundary checks.
+- [Judge evaluation protocol](docs/evaluation-protocol.md) — blind inputs, fixed-denominator scoring, and run records.
+- [Supplementary results](docs/supplementary-results.md) — exhaustive model-interface grids retained outside the paper.
 - [STANDARD.md](STANDARD.md) — trajectory schema, action types, labels, pairing.
 - [`scripts/README.md`](scripts/README.md) — full script reference.

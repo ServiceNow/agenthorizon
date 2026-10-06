@@ -9,7 +9,7 @@ All scripts should be run from the **project root** using `uv run python`.
 The recommended end-to-end workflow for running a blind judge evaluation on AgentHorizon data:
 
 ```bash
-cd /home/nlp/users/xlu41/dev/cuarm
+cd research-agenthorizon
 
 # 1. Download all videos and images from the delivery JSON
 uv run python scripts/download_delivery.py --json data/new/final/final_delivery_batch.json
@@ -17,10 +17,10 @@ uv run python scripts/download_delivery.py --json data/new/final/final_delivery_
 # 2. Verify downloads are complete
 uv run python scripts/verify_delivery.py --json data/new/final/final_delivery_batch.json
 
-# 3. Convert delivery JSON to standardized format
-#    --data-dir maps GCS URLs to local screenshot paths
-#    Produces: agenthorizon.jsonl (1704 trajectories, UUIDs, shuffled, NO labels)
-#              agenthorizon_labels.jsonl (ground-truth labels — NEVER expose to judge)
+# 3. Convert a raw delivery JSON to the construction-stage standard format
+#    --data-dir maps media URLs to local screenshot paths.
+#    Raw conversion does not reproduce the reviewed 1,373-item release by itself;
+#    use the published Hugging Face files for benchmark evaluation.
 uv run python scripts/convert_agenthorizon_trajectories.py \
     --input data/new/final/final_delivery_batch.json \
     --output data/standard/agenthorizon.jsonl \
@@ -54,7 +54,7 @@ uv run python scripts/analyze_eval_results.py \
 - Trajectory IDs are UUIDs — the judge cannot infer positive/negative from the ID.
 - The JSONL is shuffled — positive and negative trajectories are intermixed.
 - The evaluation is resumable — if interrupted, re-run the same command and it skips completed trajectories.
-- Each delivery produces 852 positive (own instruction + own demo) and 852 negative (cross-assigned by parent-child pairing) = **1704 total trajectories**.
+- Raw delivery conversion precedes evidence review and release curation. Do not use its row count as the benchmark denominator. The reviewed release contains **1,373 tasks (523 positive and 850 negative)**; see [`docs/benchmark-construction.md`](../docs/benchmark-construction.md).
 
 ### Legacy Quick Start (raw delivery JSON, no blind evaluation)
 
@@ -186,7 +186,7 @@ uv run python scripts/generate_task_pairs_csv.py -o my_output.csv
 
 **Output CSV columns:** `deliverable_id_a`, `deliverable_id_b`, `task_a`, `task_b`, `mistake_type`, `trajectory_type`
 
-The output CSV can be imported into Google Sheets/Excel or used with the [comparer app](../comparer/README.md).
+The output CSV can be imported into Google Sheets or Excel for pair-level review.
 
 ---
 
@@ -194,7 +194,7 @@ The output CSV can be imported into Google Sheets/Excel or used with the [compar
 
 Convert a delivery JSON file into the standardized trajectory format. Produces two files: a blind JSONL (UUID IDs, shuffled, no labels) and a ground-truth labels JSONL.
 
-Each of the 852 deliverables produces 1 positive trajectory (own instruction + own demo). The 426 paired deliverables also produce 2 negative trajectories each by cross-assigning instructions and demonstrations, totaling 1704 trajectories.
+The raw converter emits a construction-stage pool before evidence review. The released benchmark uses 425 complete pairs (850 candidate positives and 850 swapped negatives); review removes 327 unresolved candidate positives, yielding 1,373 released tasks. Use the published dataset files rather than raw-converter output when reproducing benchmark scores.
 
 ```bash
 # Standard conversion with local screenshot paths
